@@ -1,4 +1,5 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, FormEvent } from "react";
+import { useProductMutation } from "hooks/queries/useProductMutation";
 import * as Styled from "./ProductAddForm.style";
 
 function ProductAddForm() {
@@ -15,8 +16,19 @@ function ProductAddForm() {
     });
   };
 
+  const { mutate } = useProductMutation();
+
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    mutate(form, {
+      onSuccess: () => {
+        console.log("등록성공");
+      },
+    });
+  };
+
   return (
-    <Styled.Form>
+    <Styled.Form onSubmit={onSubmit}>
       <Styled.Fieldset>
         <Styled.Label htmlFor="name">이름</Styled.Label>
         <Styled.TextInput
