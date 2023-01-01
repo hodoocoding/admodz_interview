@@ -14,14 +14,13 @@ interface ProductMutationResponse {
   };
 }
 
-const updateProduct = async (formInfo: { name: string; price: string }) => {
-  const { data } = await axios.post<ProductMutationResponse>(
-    "/products",
-    formInfo,
+const deleteProduct = async (id: string) => {
+  const { data } = await axios.delete<ProductMutationResponse>(
+    `/products/${id}`,
   );
   return data.data;
 };
 
-export const useProductMutation = () => {
-  return useMutation(updateProduct);
+export const useDeleteMutation = () => {
+  return useMutation(deleteProduct);
 };

@@ -19,6 +19,7 @@ const ProductList = () => {
             <Styled.Th2>카테고리</Styled.Th2>
             <Styled.Th2>상품 가격</Styled.Th2>
             <Styled.Th2>수량</Styled.Th2>
+            <Styled.Th2>수정하기</Styled.Th2>
           </Styled.Trow>
         </Styled.Thead>
       </Styled.Table>

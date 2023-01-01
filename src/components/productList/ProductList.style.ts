@@ -41,22 +41,22 @@ export const Tbody = styled.tbody`
 `;
 
 export const Th1 = styled.th`
-  width: 100px;
-  font-size: 16px;
+  width: 120px;
+  font-size: 14px;
   text-align: center;
   padding: 20px;
 `;
 
 export const ThName = styled.th`
-  width: 200px;
-  font-size: 16px;
+  width: 140px;
+  font-size: 14px;
   text-align: center;
   padding: 20px;
 `;
 
 export const Th2 = styled.th`
-  width: 150px;
-  font-size: 16px;
+  width: 110px;
+  font-size: 14px;
   text-align: center;
   padding: 20px;
 `;
@@ -64,13 +64,11 @@ export const Th2 = styled.th`
 export const Trow = styled.tr`
   display: table-cell;
   vertical-align: middle;
-  height: 60px;
   border-bottom: 1px solod grey;
 `;
 
 export const ResultTrow = styled.tr`
   display: table;
-  width: 600px;
   padding: 10px 10px;
   border-bottom: 1px solid grey;
   word-break: break-all;
@@ -86,11 +84,7 @@ export const TableData = styled.td`
   align-items: center;
   width: 200px;
   gap: 10px;
-  padding: 1em 1em;
-  @media screen and (max-width: 500px) {
-    width: 27em;
-    padding: 1em 1em;
-  }
+  padding: 8px 8px;
 `;
 
 export const Thumbnail = styled.img<ImageProps>`
@@ -108,4 +102,26 @@ export const Name = styled.div`
 export const Td = styled.td`
   width: 150px;
   text-align: center;
+`;
+
+export const ButtonWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+`;
+
+export const Button = styled.button`
+  margin: 0px 5px;
+  padding: 10px 15px;
+  background: green;
+  color: white;
+  cursor: pointer;
+  border-radius: 30px;
+  border: none;
+
+  :hover {
+    background: mintcream;
+    color: black;
+  }
 `;
