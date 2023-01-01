@@ -27,7 +27,7 @@ module.exports = {
     "prettier/prettier": ["error", { endOfLine: "auto" }],
     "react/function-component-definition": [
       2,
-      { namedcomponents: "arrow-function" },
+      { namedComponents: "arrow-function" },
     ],
   },
   settings: {
