@@ -19,12 +19,27 @@ export const Label = styled.label`
 `;
 
 export const TextInput = styled.input`
-  width: 100%;
+  width: 90%;
   margin-top: 8px;
   padding: 16px;
   background-color: #f7f7fa;
   border-radius: 12px;
   border: 1px solid #f7f7fa;
+`;
+
+export const Selectd = styled.select`
+  display: black;
+  width: 90%;
+  padding: 8px 8px;
+  font-size: inherit;
+  line-height: inherit;
+  border: 1px solid;
+  border-radius: 4px;
+  color: inherit;
+  background-color: transparent;
+  &:focus {
+    border-color: red;
+  }
 `;
 
 export const SubmitButton = styled.button`

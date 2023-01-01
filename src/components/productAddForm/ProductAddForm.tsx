@@ -1,17 +1,24 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { useProductMutation } from "hooks/queries/useProductMutation";
+import { ImageUploader } from "components/imageUploader";
 import * as Styled from "./ProductAddForm.style";
 
+const OPTIONS = ["반지", "목걸이", "귀걸이", "이어커프", "팔찌", "발찌"];
+
 function ProductAddForm() {
-  const [form, setForm] = useState({
+  const [product, setProduct] = useState({
     name: "",
     price: "",
+    category: "",
+    image: "",
   });
 
-  const onChangeFormValue = (e: ChangeEvent<HTMLInputElement>) => {
+  const onChangeFormValue = (
+    e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>,
+  ) => {
     const { value, name } = e.target;
-    setForm({
-      ...form,
+    setProduct({
+      ...product,
       [name]: value,
     });
   };
@@ -20,10 +27,17 @@ function ProductAddForm() {
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    mutate(form, {
+    mutate(product, {
       onSuccess: () => {
         console.log("등록성공");
       },
+    });
+  };
+
+  const setProductThumbnail = (image: string) => {
+    setProduct({
+      ...product,
+      image,
     });
   };
 
@@ -35,7 +49,7 @@ function ProductAddForm() {
           id="name"
           type="text"
           name="name"
-          value={form.name}
+          value={product.name}
           onChange={onChangeFormValue}
         />
       </Styled.Fieldset>
@@ -46,11 +60,27 @@ function ProductAddForm() {
           id="price"
           type="number"
           name="price"
-          value={form.price}
+          value={product.price}
           onChange={onChangeFormValue}
         />
       </Styled.Fieldset>
-
+      <Styled.Fieldset>
+        <Styled.Label htmlFor="price">카테고리</Styled.Label>
+        <Styled.Selectd
+          id="category"
+          name="category"
+          onChange={onChangeFormValue}
+        >
+          {OPTIONS.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </Styled.Selectd>
+      </Styled.Fieldset>
+      <Styled.Fieldset>
+        <ImageUploader setProductThumbnail={setProductThumbnail} />
+      </Styled.Fieldset>
       <Styled.SubmitButton type="submit">생성</Styled.SubmitButton>
     </Styled.Form>
   );
