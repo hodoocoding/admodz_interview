@@ -6,9 +6,9 @@ export const Container = styled.div`
   align-items: center;
 `;
 
-export const Image = styled.image`
-  height: 100%;
-  width: 180px;
+export const Image = styled.img`
+  width: 100%;
+  height: 180px;
 `;
 
 export const Name = styled.div`
