@@ -1,15 +1,13 @@
 import React, { ChangeEvent, useState, useRef } from "react";
 import { AiOutlineClose } from "react-icons/ai";
+import { PLACEHOLDER_IMG } from "constants/placeholderImage";
 import * as Styled from "./ImageUploader.style";
 
 type ImageUploaderProp = {
   setProductThumbnail: (image: string) => void;
 };
 
-const PLACEHOLDER_IMG =
-  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN8/x8AAuMB8DtXNJsAAAAASUVORK5CYII=";
-
-function ImageUploader(props: ImageUploaderProp) {
+const ImageUploader = (props: ImageUploaderProp) => {
   const { setProductThumbnail } = props;
   const [image, setImage] = useState<string | null>(); // 미리보기 이미지
   const inputRef = useRef<HTMLInputElement>(null);
@@ -21,6 +19,7 @@ function ImageUploader(props: ImageUploaderProp) {
   };
 
   const handleUpdate = (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
     const target = e.currentTarget;
     const files = (target.files as FileList)[0];
 
@@ -66,6 +65,6 @@ function ImageUploader(props: ImageUploaderProp) {
       </Styled.Label>
     </Styled.Container>
   );
-}
+};
 
 export default ImageUploader;
