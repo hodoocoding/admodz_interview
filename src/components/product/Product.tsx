@@ -8,7 +8,7 @@ type ProductProp = {
   price: number;
 };
 
-function Product(props: ProductProp) {
+const Product = (props: ProductProp) => {
   const { id, thumbnail, name, price } = props;
   return (
     <Styled.Container key={id}>
@@ -17,6 +17,6 @@ function Product(props: ProductProp) {
       <Styled.Amount>{price}</Styled.Amount>
     </Styled.Container>
   );
-}
+};
 
 export default Product;

@@ -13,20 +13,21 @@ export const Container = styled.div`
 `;
 
 export const Label = styled.label`
-  display: grid;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  margin-top: 100px;
-`;
-
-export const Button = styled.button`
-  width: 200px;
+  width: 150px;
   height: 60px;
   background-color: black;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #e0e0e0;
   font-weight: 700;
   font-size: 20px;
   cursor: pointer;
+`;
+
+export const Input = styled.input`
+  display: none;
 `;
 
 export const ImageWraper = styled.div`
