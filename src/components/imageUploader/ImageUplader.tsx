@@ -10,27 +10,17 @@ type ImageUploaderProp = {
 const ImageUploader = (props: ImageUploaderProp) => {
   const { setProductThumbnail } = props;
   const [image, setImage] = useState<string | null>(); // 미리보기 이미지
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  const handleButtonClick = () => {
-    if (inputRef.current) {
-      inputRef.current.click();
-    }
-  };
 
   const handleUpdate = (e: ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
     const target = e.currentTarget;
     const files = (target.files as FileList)[0];
-
     const reader = new FileReader();
-
     reader.onload = () => {
-      if (reader) {
+      if (reader.result) {
         setImage(reader.result as string);
         setProductThumbnail(reader.result as string);
       }
-      e.target.value = "";
+      // e.target.value = "";
     };
     reader.readAsDataURL(files);
   };
@@ -50,19 +40,13 @@ const ImageUploader = (props: ImageUploaderProp) => {
           <Styled.Image src={image || PLACEHOLDER_IMG} />
         </Styled.ImageWraper>
       ) : null}
-      <Styled.Label>
-        <Styled.Button onClick={() => handleButtonClick()}>
-          이미지 업로드
-          <input
-            accept="image/*"
-            type="file"
-            id="fileUpload"
-            ref={inputRef}
-            onChange={handleUpdate}
-            style={{ display: "none" }}
-          />
-        </Styled.Button>
-      </Styled.Label>
+      <Styled.Label htmlFor="fileUpload">썸네일 업로드</Styled.Label>
+      <Styled.Input
+        accept="image/*"
+        type="file"
+        id="fileUpload"
+        onChange={handleUpdate}
+      />
     </Styled.Container>
   );
 };

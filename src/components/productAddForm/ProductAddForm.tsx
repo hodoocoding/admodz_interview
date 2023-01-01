@@ -1,16 +1,23 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
+/* eslint-disable no-console */
+import React, { useState, useRef, ChangeEvent, FormEvent } from "react";
 import { useProductMutation } from "hooks/queries/useProductMutation";
 import { ImageUploader } from "components/imageUploader";
+
+import { useNavigate } from "react-router-dom";
 import * as Styled from "./ProductAddForm.style";
 
 const OPTIONS = ["반지", "목걸이", "귀걸이", "이어커프", "팔찌", "발찌"];
 
-function ProductAddForm() {
+const ProductAddForm = () => {
+  const nextId = useRef(11);
+  const navigate = useNavigate();
+
   const [product, setProduct] = useState({
+    id: nextId.current,
     name: "",
+    thumbnail: "",
     price: "",
     category: "",
-    image: "",
   });
 
   const onChangeFormValue = (
@@ -29,15 +36,16 @@ function ProductAddForm() {
     e.preventDefault();
     mutate(product, {
       onSuccess: () => {
-        console.log("등록성공");
+        navigate("/products");
       },
     });
+    nextId.current += 1;
   };
 
-  const setProductThumbnail = (image: string) => {
+  const setProductThumbnail = (thumbnail: string) => {
     setProduct({
       ...product,
-      image,
+      thumbnail,
     });
   };
 
@@ -84,6 +92,6 @@ function ProductAddForm() {
       <Styled.SubmitButton type="submit">생성</Styled.SubmitButton>
     </Styled.Form>
   );
-}
+};
 
 export default ProductAddForm;
