@@ -2,12 +2,13 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ProductAddForm } from "components/productAddForm";
 import { ProductList } from "components/productList";
+import { Header } from "components/header";
 
 const App = () => {
   return (
     <div className="App">
       <BrowserRouter>
-        <header>아몬즈 인터뷰 프로젝트</header>
+        <Header />
         <Routes>
           <Route path="/" element={<ProductAddForm />} />
           <Route path="/products" element={<ProductList />} />
