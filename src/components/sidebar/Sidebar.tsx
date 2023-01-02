@@ -1,4 +1,6 @@
 import React, { useState, ReactNode } from "react";
+import { useSidebarStore } from "store/useSidebarStore";
+import { AiOutlineClose } from "react-icons/ai";
 
 import * as Styled from "./Sidebar.style";
 
@@ -8,26 +10,18 @@ type Sidebar = {
 };
 
 const Sidebar = ({ width = 320, children }: Sidebar) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [position, setPositon] = useState<number>(-width);
-
-  // sidebar 토글 함수
-  const onClickToggleSidebar = () => {
-    if (position < 0) {
-      setPositon(0);
-      setIsOpen(true);
-    } else {
-      setPositon(-width);
-      setIsOpen(false);
-    }
-  };
+  const { isOpen, position, onClickToggle } = useSidebarStore();
+  console.log(position);
 
   return (
     <Styled.Container>
       <Styled.Sidebar width={width} position={position}>
-        <Styled.Button onClick={() => onClickToggleSidebar()}>
-          {isOpen ? <span>X</span> : <span>OPEN</span>}
-        </Styled.Button>
+        {isOpen && (
+          <Styled.CloseIconWrap onClick={() => onClickToggle()}>
+            <AiOutlineClose />
+          </Styled.CloseIconWrap>
+        )}
+
         <Styled.Content>{children}</Styled.Content>
       </Styled.Sidebar>
     </Styled.Container>
