@@ -1,7 +1,6 @@
 import { Product } from "types/product";
 import { PLACEHOLDER_IMG } from "constants/placeholderImage";
 import { useDeleteMutation } from "hooks/queries/useDeleteMutation";
-import { ChangeEvent } from "react";
 import * as Styled from "./ProductList.style";
 
 interface RowProps {
