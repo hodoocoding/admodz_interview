@@ -1,6 +1,7 @@
 import { Product } from "types/product";
 import { PLACEHOLDER_IMG } from "constants/placeholderImage";
 import { useDeleteMutation } from "hooks/queries/useDeleteMutation";
+import { useSidebarStore } from "store/useSidebarStore";
 import * as Styled from "./ProductList.style";
 
 interface RowProps {
@@ -11,6 +12,8 @@ const Row = (props: RowProps) => {
   const {
     product: { name, thumbnail, price, id },
   } = props;
+
+  const { onClickToggle } = useSidebarStore();
 
   const { mutate } = useDeleteMutation();
 
@@ -34,7 +37,9 @@ const Row = (props: RowProps) => {
       <Styled.Td>수량</Styled.Td>
       <Styled.Td>
         <Styled.ButtonWrap>
-          <Styled.Button>수정하기</Styled.Button>
+          <Styled.Button onClick={() => onClickToggle()}>
+            수정하기
+          </Styled.Button>
           <Styled.Button onClick={() => onClickDeleteItem(id)}>
             삭제하기
           </Styled.Button>
