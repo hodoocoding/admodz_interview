@@ -28,13 +28,13 @@ export const Thead = styled.thead`
   width: 100%;
   height: 5vh;
   margin-top: 40px;
-  background-color: #ccd9d3;
-  border-bottom: 1px solid #336851;
+  background-color: #f0f0f5;
+  border-bottom: 1px solid #f3f5f9;
 `;
 
 export const Tbody = styled.tbody`
   overflow-y: scroll;
-  background-color: #e6ece9;
+  background-color: #f3f5f9;
   float: left;
   width: 600px;
   height: 100vh;
@@ -64,13 +64,13 @@ export const Th2 = styled.th`
 export const Trow = styled.tr`
   display: table-cell;
   vertical-align: middle;
-  border-bottom: 1px solod grey;
+  border-bottom: 1px solod #dae1e7;
 `;
 
 export const ResultTrow = styled.tr`
   display: table;
   padding: 10px 10px;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid #dae1e7;
   word-break: break-all;
   height: auto;
   font-size: 1em;
@@ -114,7 +114,7 @@ export const ButtonWrap = styled.div`
 export const Button = styled.button`
   margin: 0px 5px;
   padding: 10px 15px;
-  background: green;
+  background: #9999dd;
   color: white;
   cursor: pointer;
   border-radius: 30px;
