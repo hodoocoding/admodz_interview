@@ -1,7 +1,22 @@
 import styled from "styled-components";
 
+export const Container = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  @media screen and (max-width: 500px) {
+    width: 100%;
+    font-size: 1em;
+    height: 50%;
+  }
+`;
+
 export const Form = styled.form`
   display: flex;
+  width: 420px;
+  margin-top: 40px;
   flex-direction: column;
 `;
 

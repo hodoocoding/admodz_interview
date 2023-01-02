@@ -6,6 +6,7 @@ type ImageProps = {
 
 export const Container = styled.div`
   width: 100%;
+  height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,7 +28,7 @@ export const Thead = styled.thead`
   float: left;
   width: 100%;
   height: 5vh;
-  margin-top: 40px;
+  margin-top: 20px;
   background-color: #f0f0f5;
   border-bottom: 1px solid #f3f5f9;
 `;
@@ -37,7 +38,6 @@ export const Tbody = styled.tbody`
   background-color: #f3f5f9;
   float: left;
   width: 600px;
-  height: 100vh;
 `;
 
 export const Th1 = styled.th`
