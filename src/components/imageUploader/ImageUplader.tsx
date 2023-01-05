@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, Dispatch, SetStateAction } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { PLACEHOLDER_IMG } from "constants/placeholderImage";
 import { ProductType } from "types/product";
@@ -6,7 +6,7 @@ import * as Styled from "./ImageUploader.style";
 
 type ImageUploaderProp = {
   product: ProductType;
-  setProduct: (image: any) => void;
+  setProduct: Dispatch<SetStateAction<string>> | any;
 };
 
 const ImageUploader = (props: ImageUploaderProp) => {
@@ -20,7 +20,7 @@ const ImageUploader = (props: ImageUploaderProp) => {
       if (reader.result) {
         setProduct({
           ...product,
-          thumbnail: reader.result,
+          thumbnail: reader.result as string,
         });
       }
       e.target.value = "";
