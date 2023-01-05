@@ -1,29 +1,21 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  width: 100%;
+export const Container = styled.div``;
+
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  @media screen and (max-width: 500px) {
-    width: 100%;
-    font-size: 1em;
-    height: 50%;
-  }
-`;
-
-export const Form = styled.form`
-  display: flex;
-  width: 420px;
-  margin-top: 40px;
-  flex-direction: column;
+  width: 380px;
+  margin-bottom: 120px;
 `;
 
 export const Fieldset = styled.fieldset`
-  :first-child {
-    margin-bottom: 16px;
-  }
+  width: 100%;
+  padding: 10px;
+  border: none;
+  text-align: left;
 `;
 
 export const Label = styled.label`
@@ -35,7 +27,7 @@ export const Label = styled.label`
 
 export const TextInput = styled.input`
   width: 90%;
-  margin-top: 8px;
+  margin-top: 10px;
   padding: 16px;
   background-color: #f7f7fa;
   border-radius: 12px;
@@ -44,24 +36,29 @@ export const TextInput = styled.input`
 
 export const Selectd = styled.select`
   display: black;
-  width: 90%;
-  padding: 8px 8px;
-  font-size: inherit;
-  line-height: inherit;
-  border: 1px solid;
+  width: 100%;
+  padding: 16px;
+  margin-top: 10px;
+  background-color: #f7f7fa;
+  border: 1px solid #f7f7fa;
   border-radius: 4px;
+  line-height: inherit;
+  font-size: inherit;
   color: inherit;
-  background-color: transparent;
   &:focus {
     border-color: red;
   }
 `;
 
 export const SubmitButton = styled.button`
-  margin-top: 40px;
-  padding: 20px;
-  border-radius: 12px;
+  width: 100%;
+  padding: 8px 16px;
+  margin-top: 10px;
+  border-radius: 8px;
   background-color: #6d6bd1;
+  border: none;
+  font-weight: 700;
+  font-size: 20px;
   color: #fff;
   cursor: pointer;
   transition: all 0.2s;

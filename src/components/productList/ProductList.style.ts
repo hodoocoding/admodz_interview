@@ -69,7 +69,7 @@ export const Trow = styled.tr`
 
 export const ResultTrow = styled.tr`
   display: table;
-  padding: 10px 10px;
+  padding: 10px 0px 10px 10px;
   border-bottom: 1px solid #dae1e7;
   word-break: break-all;
   height: auto;
@@ -100,22 +100,24 @@ export const Name = styled.div`
 `;
 
 export const Td = styled.td`
-  width: 150px;
+  width: 96px;
   text-align: center;
 `;
 
 export const ButtonWrap = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
   gap: 8px;
 `;
 
 export const Button = styled.button`
-  margin: 0px 5px;
-  padding: 10px 15px;
+  margin: 0px 25px;
+  padding: 5px;
   background: #9999dd;
   color: white;
+  width: 40px;
   cursor: pointer;
   border-radius: 30px;
   border: none;
