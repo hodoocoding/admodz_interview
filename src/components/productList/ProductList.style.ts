@@ -11,18 +11,13 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  @media screen and (max-width: 500px) {
-    width: 100%;
-    font-size: 1em;
-    height: 50%;
-  }
 `;
 
 export const Table = styled.table`
   display: flex;
   flex-direction: column;
   width: 600px;
-  margin-top: 10px;
+  margin-top: 30px;
   border-collapse: collapse;
 `;
 
@@ -41,7 +36,10 @@ export const Tbody = styled.tbody`
   background-color: #f3f5f9;
   float: left;
   width: 600px;
-  height: 60vh;
+  height: 70vh;
+  @media screen and (max-width: 600px) {
+    height: 100vh;
+  }
 `;
 
 export const Th1 = styled.th`
