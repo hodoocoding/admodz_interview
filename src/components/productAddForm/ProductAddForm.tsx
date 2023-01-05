@@ -1,24 +1,45 @@
+/* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable no-console */
-import React, { useState, useRef, ChangeEvent, FormEvent } from "react";
-import { useProductMutation } from "hooks/queries/useProductMutation";
-import { ImageUploader } from "components/imageUploader";
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  ChangeEvent,
+  FormEvent,
+} from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
-import { useNavigate } from "react-router-dom";
+import { useProductQuery } from "hooks/useProductQuery";
+import {
+  useProductMutation,
+  useUpdateMutation,
+} from "hooks/useProductMutation";
+import { ImageUploader } from "components/imageUploader";
+import { useProductStore } from "store/useProductStore";
+import { useSidebarStore } from "store/useSidebarStore";
+
+import { validateForm } from "utilities";
 import * as Styled from "./ProductAddForm.style";
 
-const OPTIONS = ["반지", "목걸이", "귀걸이", "이어커프", "팔찌", "발찌"];
-
 const ProductAddForm = () => {
-  const nextId = useRef(11);
+  const { id } = useParams();
   const navigate = useNavigate();
+  const { registProduct, updataProducts, products } = useProductStore();
+  const nextId = useRef(products.length + 1);
 
   const [product, setProduct] = useState({
-    id: nextId.current,
+    id: nextId.current.toString(),
     name: "",
     thumbnail: "",
     price: "",
+    quantity: "",
     category: "",
   });
+
+  const { data: itemInformation, isLoading, isSuccess } = useProductQuery(id);
+  const { onClickToggle } = useSidebarStore();
+  const { mutate } = useProductMutation();
+  const { mutate: updateMutate } = useUpdateMutation();
 
   const onChangeFormValue = (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>,
@@ -30,70 +51,122 @@ const ProductAddForm = () => {
     });
   };
 
-  const { mutate } = useProductMutation();
+  const mutateHandler = () => {
+    if (itemInformation) {
+      console.log("here");
+      updateMutate(
+        { id, product },
+        {
+          onSuccess: async (data) => {
+            await updataProducts(data.products);
+            await setProduct({
+              ...product,
+              id: nextId.current.toString(),
+              name: "",
+              thumbnail: "",
+              price: "",
+              category: "",
+            });
+            await onClickToggle();
+            await navigate("/");
+          },
+        },
+      );
+    } else {
+      mutate(product, {
+        onSuccess: async () => {
+          await registProduct(product);
+          await setProduct({
+            ...product,
+            id: nextId.current.toString(),
+            name: "",
+            thumbnail: "",
+            price: "",
+            category: "",
+          });
+          await onClickToggle();
+        },
+      });
+    }
+  };
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    mutate(product, {
-      onSuccess: () => {
-        navigate("/products");
-      },
-    });
-    nextId.current += 1;
+    mutateHandler();
   };
 
-  const setProductThumbnail = (thumbnail: string) => {
-    setProduct({
-      ...product,
-      thumbnail,
-    });
-  };
+  useEffect(() => {
+    if (itemInformation) {
+      console.log(itemInformation);
+      setProduct(itemInformation);
+    }
+  }, [itemInformation, !isLoading, isSuccess]);
 
   return (
-    <Styled.Container>
-      <Styled.Form onSubmit={onSubmit}>
-        <Styled.Fieldset>
-          <Styled.Label htmlFor="name">이름</Styled.Label>
-          <Styled.TextInput
-            id="name"
-            type="text"
-            name="name"
-            value={product.name}
-            onChange={onChangeFormValue}
-          />
-        </Styled.Fieldset>
+    <Styled.Form onSubmit={onSubmit}>
+      <Styled.Fieldset>
+        <Styled.Label htmlFor="name">상품 이름</Styled.Label>
+        <Styled.TextInput
+          id="name"
+          type="text"
+          name="name"
+          value={product?.name}
+          onChange={onChangeFormValue}
+        />
+      </Styled.Fieldset>
 
-        <Styled.Fieldset>
-          <Styled.Label htmlFor="price">가격</Styled.Label>
-          <Styled.TextInput
-            id="price"
-            type="number"
-            name="price"
-            value={product.price}
-            onChange={onChangeFormValue}
-          />
-        </Styled.Fieldset>
-        <Styled.Fieldset>
-          <Styled.Label htmlFor="price">카테고리</Styled.Label>
-          <Styled.Selectd
-            id="category"
-            name="category"
-            onChange={onChangeFormValue}
-          >
-            {OPTIONS.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </Styled.Selectd>
-        </Styled.Fieldset>
-        <Styled.Fieldset>
-          <ImageUploader setProductThumbnail={setProductThumbnail} />
-        </Styled.Fieldset>
-        <Styled.SubmitButton type="submit">생성</Styled.SubmitButton>
-      </Styled.Form>
-    </Styled.Container>
+      <Styled.Fieldset>
+        <Styled.Label htmlFor="price">카테고리</Styled.Label>
+        <Styled.Selectd
+          id="category"
+          name="category"
+          placeholder="카테고리"
+          onChange={onChangeFormValue}
+        >
+          <option value="" selected disabled hidden>
+            카테고리
+          </option>
+
+          {OPTIONS.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </Styled.Selectd>
+      </Styled.Fieldset>
+
+      <Styled.Fieldset>
+        <Styled.Label htmlFor="price">상품 가격</Styled.Label>
+        <Styled.TextInput
+          id="price"
+          type="number"
+          name="price"
+          value={product?.price}
+          onChange={onChangeFormValue}
+        />
+      </Styled.Fieldset>
+
+      <Styled.Fieldset>
+        <Styled.Label htmlFor="quantity">수량</Styled.Label>
+        <Styled.TextInput
+          id="quantity"
+          type="number"
+          name="quantity"
+          value={product?.quantity}
+          onChange={onChangeFormValue}
+        />
+      </Styled.Fieldset>
+
+      <Styled.Fieldset>
+        <ImageUploader product={product} setProduct={setProduct} />
+      </Styled.Fieldset>
+      <Styled.SubmitButton type="submit" disabled={!validateForm(product)}>
+        {itemInformation ? "변경" : "생성"}
+      </Styled.SubmitButton>
+    </Styled.Form>
   );
 };
 
 export default ProductAddForm;
+
+const OPTIONS = ["반지", "목걸이", "귀걸이", "이어커프", "팔찌", "발찌"];

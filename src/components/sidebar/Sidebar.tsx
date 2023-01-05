@@ -1,29 +1,41 @@
-import React, { useState, ReactNode } from "react";
+import React, { Suspense } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSidebarStore } from "store/useSidebarStore";
 import { AiOutlineClose } from "react-icons/ai";
+import { ProductAddForm } from "components/productAddForm";
 
 import * as Styled from "./Sidebar.style";
 
-type Sidebar = {
-  width: number;
-  children: ReactNode;
-};
-
-const Sidebar = ({ width = 320, children }: Sidebar) => {
+const Sidebar = () => {
+  const navigate = useNavigate();
   const { isOpen, position, onClickToggle } = useSidebarStore();
-  console.log(position);
 
   return (
     <Styled.Container>
-      <Styled.Sidebar width={width} position={position}>
-        {isOpen && (
-          <Styled.CloseIconWrap onClick={() => onClickToggle()}>
-            <AiOutlineClose />
-          </Styled.CloseIconWrap>
-        )}
-
-        <Styled.Content>{children}</Styled.Content>
+      <Styled.Sidebar width={420} position={position}>
+        <Styled.CloseIconWrap
+          onClick={() => {
+            onClickToggle();
+            navigate("/");
+          }}
+        >
+          <AiOutlineClose />
+        </Styled.CloseIconWrap>
+        <Suspense fallback={<h1>loading</h1>}>
+          <Styled.Content>
+            <ProductAddForm />
+          </Styled.Content>
+        </Suspense>
+        <div />
       </Styled.Sidebar>
+      {isOpen && (
+        <Styled.Backdrop
+          onClick={() => {
+            onClickToggle();
+            navigate("/");
+          }}
+        />
+      )}
     </Styled.Container>
   );
 };

@@ -20,6 +20,7 @@ export const TitleWrap = styled.div`
 export const MenuWrap = styled.div`
   display: flex;
   gap: 20px;
+  margin-top: 20px;
 `;
 
 type Menu = {
@@ -29,4 +30,5 @@ type Menu = {
 export const Menu = styled.p<Menu>`
   font-size: 1.6rem;
   color: ${(props) => (props.isActive ? "#9999dd" : "#7d879c")};
+  cursor: pointer;
 `;

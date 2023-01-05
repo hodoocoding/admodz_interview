@@ -2,11 +2,11 @@
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import * as queryKeys from "constants/queryKeys";
-import { Product } from "types/product";
+import { ProductType } from "types/product";
 
 interface ProductsResponse {
   data: {
-    products: Product[];
+    products: ProductType[];
   };
 }
 
@@ -21,8 +21,8 @@ export const fetchProducts = async () => {
   }
 };
 
-export const useProductQuery = () => {
-  const queryResult = useQuery<FetchProductsResult>([queryKeys.PRODUCT], () =>
+export const useProductsQuery = () => {
+  const queryResult = useQuery<FetchProductsResult>([queryKeys.PRODUCTS], () =>
     fetchProducts(),
   );
   return queryResult;

@@ -16,35 +16,46 @@ export const Sidebar = styled.div<SidebarProps>`
   top: 0;
   bottom: 0;
   right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: baseline;
   width: ${(props) => `${props.width}px`};
   transform: ${(props) => `translatex(${-props.position}px)`};
   height: 100%;
-  transition: 0.4s ease;
   color: #202020;
   height: 100%;
   z-index: 99;
+  transition: 0.8s ease;
 `;
 
 export const CloseIconWrap = styled.button`
-  position: relative;
-  left: -70px;
-  top: 10px;
-  width: 15px;
-  height: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 3rem;
   height: 3rem;
-  background-color: #9999dd;
-  color: white;
+  color: #2b3445;
+  border: none;
   border: none;
   border-radius: 50%;
+  background-color: #f0f0f5;
   font-size: medium;
   :hover {
     background-color: #2b3445;
     color: #e0e0e0;
   }
+`;
+
+export const Backdrop = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 98;
 `;
 
 export const OpenButton = styled.button`
@@ -53,9 +64,10 @@ export const OpenButton = styled.button`
 `;
 
 export const Content = styled.div`
-  padding: 40px 40px 0 20px;
+  padding: 10px 10px 0 20px;
   position: relative;
   width: 100%;
+  height: 100;
 `;
 
 export const IconWrapper = styled.div`
