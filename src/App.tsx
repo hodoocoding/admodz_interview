@@ -1,19 +1,21 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ProductAddForm } from "components/productAddForm";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { ProductList } from "components/productList";
-import { Header } from "components/header";
+import { Sidebar } from "components/sidebar";
 
 const App = () => {
+  const location = useLocation();
+  const background = location.state && location.state.background;
   return (
     <div className="App">
-      <BrowserRouter>
-        <Header />
+      <Routes location={background || location}>
+        <Route path="/" element={<ProductList />} />
+      </Routes>
+      {background && (
         <Routes>
-          <Route path="/" element={<ProductAddForm />} />
-          <Route path="/products" element={<ProductList />} />
+          <Route path="/product/:id" element={<Sidebar />} />
         </Routes>
-      </BrowserRouter>
+      )}
     </div>
   );
 };
