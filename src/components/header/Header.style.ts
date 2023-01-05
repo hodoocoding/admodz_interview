@@ -20,6 +20,7 @@ export const TitleWrap = styled.div`
 export const MenuWrap = styled.div`
   display: flex;
   gap: 20px;
+  margin-top: 20px;
 `;
 
 type Menu = {
