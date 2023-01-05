@@ -1,11 +1,14 @@
-import { Product } from "types/product";
+import { Link, useLocation } from "react-router-dom";
+
+import { ProductType } from "types/product";
 import { PLACEHOLDER_IMG } from "constants/placeholderImage";
-import { useDeleteMutation } from "hooks/queries/useDeleteMutation";
+import { useDeleteMutation } from "hooks/useDeleteMutation";
 import { useSidebarStore } from "store/useSidebarStore";
+import { useProductStore } from "store/useProductStore";
 import * as Styled from "./ProductList.style";
 
 interface RowProps {
-  product: Product;
+  product: ProductType;
 }
 
 const Row = (props: RowProps) => {
@@ -14,14 +17,15 @@ const Row = (props: RowProps) => {
   } = props;
 
   const { onClickToggle } = useSidebarStore();
+  const { eraseProduct } = useProductStore();
+  const location = useLocation();
 
   const { mutate } = useDeleteMutation();
 
-  const onClickDeleteItem = (id: string) => {
-    console.log("here");
+  const onClickDeleteItem = (id: number | string) => {
     mutate(id, {
       onSuccess: () => {
-        console.log("삭제 성공");
+        eraseProduct(id);
       },
     });
   };
@@ -37,11 +41,11 @@ const Row = (props: RowProps) => {
       <Styled.Td>수량</Styled.Td>
       <Styled.Td>
         <Styled.ButtonWrap>
-          <Styled.Button onClick={() => onClickToggle()}>
-            수정하기
-          </Styled.Button>
+          <Link to={`/product/${id}`} state={{ background: location }}>
+            <Styled.Button onClick={() => onClickToggle()}>수정</Styled.Button>
+          </Link>
           <Styled.Button onClick={() => onClickDeleteItem(id)}>
-            삭제하기
+            삭제
           </Styled.Button>
         </Styled.ButtonWrap>
       </Styled.Td>
