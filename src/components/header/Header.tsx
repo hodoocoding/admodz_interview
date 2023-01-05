@@ -5,7 +5,7 @@ import * as Styled from "./Header.style";
 
 const Header = () => {
   const location = useLocation();
-  const { onClickToggle, isOpen } = useSidebarStore();
+  const { onClickToggle } = useSidebarStore();
 
   return (
     <Styled.Header>
@@ -14,17 +14,18 @@ const Header = () => {
           <Styled.Title>Amondz 인터뷰 프로젝트</Styled.Title>
         </Link>
         <Styled.MenuWrap>
-          <Styled.Menu
-            isActive={location.pathname === "/"}
-            onClick={() => {
-              onClickToggle();
-            }}
-          >
-            상품등록
-          </Styled.Menu>
+          <Link to="/product" state={{ background: location }}>
+            <Styled.Menu
+              isActive={location.pathname === "/product"}
+              onClick={() => {
+                onClickToggle();
+              }}
+            >
+              상품등록
+            </Styled.Menu>
+          </Link>
         </Styled.MenuWrap>
       </Styled.TitleWrap>
-      {isOpen && <Sidebar />}
     </Styled.Header>
   );
 };
