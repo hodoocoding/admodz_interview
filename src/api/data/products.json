@@ -3,60 +3,70 @@
     "id": "1",
     "name": "Warmwhite Cup",
     "thumbnail": "https://contents.sixshop.com/thumbnails/uploadedFiles/183003/product/image_1634831270597_1000.jpg",
-    "price": 25000
+    "price": 25000,
+    "quantity": 10
   },
   {
     "id": "2",
     "name": "Coin Walnut Table",
     "thumbnail": "https://contents.sixshop.com/thumbnails/uploadedFiles/183003/product/image_1634415880172_1000.png",
-    "price": 120000
+    "price": 120000,
+    "quantity": 10
   },
   {
     "id": "3",
     "name": "Single Frame Chair",
     "thumbnail": "https://contents.sixshop.com/thumbnails/uploadedFiles/183003/product/image_1634410791006_1000.png",
-    "price": 76000
+    "price": 76000,
+    "quantity": 10
   },
   {
     "id": "4",
     "name": "Stone Head Obj",
     "thumbnail": "https://contents.sixshop.com/thumbnails/uploadedFiles/183003/product/image_1634835124525_1000.jpg",
-    "price": 15000
+    "price": 15000,
+    "quantity": 10
   },
   {
     "id": "5",
     "name": "Wooden Tray",
     "thumbnail": "https://contents.sixshop.com/thumbnails/uploadedFiles/183003/product/image_1634835075928_1000.jpg",
-    "price": 25000
+    "price": 25000,
+    "quantity": 10
   },
   {
     "id": "6",
     "name": "Boa Sofa",
     "thumbnail": "https://contents.sixshop.com/thumbnails/uploadedFiles/183003/product/image_1634400886102_1000.png",
-    "price": 230000
+    "price": 230000,
+    "quantity": 10
   },
   {
     "id": "7",
     "name": "Body Candle",
     "thumbnail": "https://contents.sixshop.com/thumbnails/uploadedFiles/183003/product/image_1634835035089_1000.jpg",
-    "price": 19000
+    "price": 19000,
+    "quantity": 10
   },
   {
     "id": "8",
     "name": "Akon 40 Cotton Blanket",
     "thumbnail": "https://contents.sixshop.com/thumbnails/uploadedFiles/183003/product/image_1634864320753_1000.jpg",
-    "price": 46000
+    "price": 46000,
+    "quantity": 10
   },
   {
     "id": "9",
     "name": "Foground Vase",
     "thumbnail": "https://contents.sixshop.com/thumbnails/uploadedFiles/183003/product/image_1634465422170_1000.png",
-    "price": 38000
+    "price": 38000,
+    "quantity": 10
   },
   {
     "id": "10",
     "name": "Happy Glass Water",
     "thumbnail": "https://contents.sixshop.com/thumbnails/uploadedFiles/183003/product/image_1634327797904_1000.jpg",
-    "price": 28000
+    "price": 28000,
+    "quantity": 10
   }
 ]

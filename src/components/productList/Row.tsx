@@ -13,7 +13,7 @@ interface RowProps {
 
 const Row = (props: RowProps) => {
   const {
-    product: { name, thumbnail, price, id },
+    product: { name, thumbnail, price, id, quantity },
   } = props;
 
   const { onClickToggle } = useSidebarStore();
@@ -38,7 +38,7 @@ const Row = (props: RowProps) => {
       </Styled.TableData>
       <Styled.Td>카테고리</Styled.Td>
       <Styled.Td>{price}</Styled.Td>
-      <Styled.Td>수량</Styled.Td>
+      <Styled.Td>{quantity}</Styled.Td>
       <Styled.Td>
         <Styled.ButtonWrap>
           <Link to={`/product/${id}`} state={{ background: location }}>
