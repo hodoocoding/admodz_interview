@@ -8,7 +8,7 @@ type SidebarStore = {
 
 export const useSidebarStore = create<SidebarStore>((set) => ({
   isOpen: false,
-  position: -320,
+  position: -420,
   onClickToggle: () =>
     set((state) => {
       if (state.position < 0) {
@@ -21,7 +21,7 @@ export const useSidebarStore = create<SidebarStore>((set) => ({
       return {
         ...state,
         isOpen: false,
-        position: -320,
+        position: -420,
       };
     }),
 }));
