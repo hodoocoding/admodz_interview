@@ -11,6 +11,7 @@ type ImageUploaderProp = {
 
 const ImageUploader = (props: ImageUploaderProp) => {
   const { product, setProduct } = props;
+  const { thumbnail } = product;
 
   const handleUpdate = (e: ChangeEvent<HTMLInputElement>) => {
     const target = e.currentTarget;
@@ -23,14 +24,13 @@ const ImageUploader = (props: ImageUploaderProp) => {
           thumbnail: reader.result as string,
         });
       }
-      e.target.value = "";
     };
     reader.readAsDataURL(files);
   };
 
   return (
     <Styled.Container>
-      {product.thumbnail ? (
+      {thumbnail && (
         <Styled.ImageWraper>
           <Styled.CloseButtonWrap
             onClick={() => {
@@ -42,14 +42,14 @@ const ImageUploader = (props: ImageUploaderProp) => {
           >
             <AiOutlineClose />
           </Styled.CloseButtonWrap>
-          <Styled.Image src={product.thumbnail || PLACEHOLDER_IMG} />
+          <Styled.Image src={thumbnail || PLACEHOLDER_IMG} />
         </Styled.ImageWraper>
-      ) : null}
+      )}
       <Styled.Label
         htmlFor="fileUpload"
-        aria-label={product.thumbnail ? "교체하기" : "썸네일 추가하기"}
+        aria-label={thumbnail ? "썸네일 교체" : "썸네일 추가"}
       >
-        {product.thumbnail ? "교체하기" : "썸네일 추가하기"}
+        {thumbnail ? "썸네일 교체" : "썸네일 추가"}
       </Styled.Label>
       <Styled.Input
         accept="image/*"
