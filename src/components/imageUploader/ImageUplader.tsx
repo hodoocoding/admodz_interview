@@ -1,15 +1,16 @@
-import React, { ChangeEvent, useState, useRef } from "react";
+import React, { ChangeEvent } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { PLACEHOLDER_IMG } from "constants/placeholderImage";
+import { ProductType } from "types/product";
 import * as Styled from "./ImageUploader.style";
 
 type ImageUploaderProp = {
-  setProductThumbnail: (image: string) => void;
+  product: ProductType;
+  setProduct: (image: any) => void;
 };
 
 const ImageUploader = (props: ImageUploaderProp) => {
-  const { setProductThumbnail } = props;
-  const [image, setImage] = useState<string | null>(); // 미리보기 이미지
+  const { product, setProduct } = props;
 
   const handleUpdate = (e: ChangeEvent<HTMLInputElement>) => {
     const target = e.currentTarget;
@@ -17,30 +18,39 @@ const ImageUploader = (props: ImageUploaderProp) => {
     const reader = new FileReader();
     reader.onload = () => {
       if (reader.result) {
-        setImage(reader.result as string);
-        setProductThumbnail(reader.result as string);
+        setProduct({
+          ...product,
+          thumbnail: reader.result,
+        });
       }
-      // e.target.value = "";
+      e.target.value = "";
     };
     reader.readAsDataURL(files);
   };
 
   return (
     <Styled.Container>
-      {image ? (
+      {product.thumbnail ? (
         <Styled.ImageWraper>
           <Styled.CloseButtonWrap
             onClick={() => {
-              setImage(null);
-              setProductThumbnail("");
+              setProduct({
+                ...product,
+                thumbnail: "",
+              });
             }}
           >
             <AiOutlineClose />
           </Styled.CloseButtonWrap>
-          <Styled.Image src={image || PLACEHOLDER_IMG} />
+          <Styled.Image src={product.thumbnail || PLACEHOLDER_IMG} />
         </Styled.ImageWraper>
       ) : null}
-      <Styled.Label htmlFor="fileUpload">썸네일 업로드</Styled.Label>
+      <Styled.Label
+        htmlFor="fileUpload"
+        aria-label={product.thumbnail ? "교체하기" : "썸네일 추가하기"}
+      >
+        {product.thumbnail ? "교체하기" : "썸네일 추가하기"}
+      </Styled.Label>
       <Styled.Input
         accept="image/*"
         type="file"

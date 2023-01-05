@@ -10,6 +10,7 @@ export const Container = styled.div`
   align-items: center;
   padding: 8px 16px;
   justify-content: center;
+  gap: 20px;
 `;
 
 export const Label = styled.label`
@@ -17,13 +18,19 @@ export const Label = styled.label`
   align-items: center;
   justify-content: center;
   width: 150px;
-  height: 60px;
-  background-color: black;
+  padding: 8px 16px;
+  background-color: #6d6bd1;
   border-radius: 8px;
-  color: #e0e0e0;
+  color: #f0f0f5;
   font-weight: 700;
   font-size: 20px;
   cursor: pointer;
+  transition: all 0.2s;
+
+  :hover {
+    background-color: mintcream;
+    color: #9999dd;
+  }
 `;
 
 export const Input = styled.input`
@@ -51,10 +58,11 @@ export const CloseButtonWrap = styled.div`
   position: absolute;
   width: 30px;
   height: 30px;
-  right: -40px;
-  top: 0px;
+  right: 10px;
+  top: 10px;
   background-color: #dcdcdc;
   border: none;
+  opacity: 80%;
   border-radius: 50%;
   :hover {
     background-color: #d3959b;
