@@ -43,7 +43,6 @@ export const Selectd = styled.select`
   border: 1px solid #f7f7fa;
   border-radius: 4px;
   line-height: inherit;
-  font-size: inherit;
   color: inherit;
   &:focus {
     border-color: red;
