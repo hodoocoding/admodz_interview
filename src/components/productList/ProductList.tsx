@@ -10,8 +10,6 @@ const ProductList = () => {
   const { data, isSuccess, isLoading } = useProductsQuery();
   const { products, fetchProducts } = useProductStore();
 
-  console.log(products);
-
   useEffect(() => {
     fetchProducts(data?.products);
   }, [isSuccess && !isLoading]);
@@ -33,13 +31,12 @@ const ProductList = () => {
               <Styled.Th2>수정하기</Styled.Th2>
             </Styled.Trow>
           </Styled.Thead>
-        </Styled.Table>
-        <Styled.Tbody>
-          {products.length &&
-            products.map((product: ProductType) => {
+          <Styled.Tbody>
+            {products.map((product: ProductType) => {
               return <Row product={product} key={product.id} />;
             })}
-        </Styled.Tbody>
+          </Styled.Tbody>
+        </Styled.Table>
       </Styled.Container>
     </>
   );
