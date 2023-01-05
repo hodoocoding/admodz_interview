@@ -9,7 +9,6 @@ export const handlers = [
   rest.get("/products", (req, res, ctx) => {
     if (cacheData.length) {
       const data = cacheData.state.products;
-      console.log("캐시데이터", products);
       return res(ctx.status(200), ctx.json({ data: { products: data } }));
     }
     return res(ctx.status(200), ctx.json({ data: { products } }));
@@ -47,6 +46,7 @@ export const handlers = [
       (product: ProductType) => product.id === id,
     );
     const indexOfTarget = shallowdata.indexOf(target);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const updateProducts = shallowdata.splice(indexOfTarget, 1, req.body);
     return res(ctx.status(200), ctx.json({ data: { products: shallowdata } }));
   }),
