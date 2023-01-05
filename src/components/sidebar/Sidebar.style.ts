@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  position: relative;
   background-color: #f0f0f5;
 `;
 
@@ -18,19 +19,21 @@ export const Sidebar = styled.div<SidebarProps>`
   right: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: flex-start;
-  align-self: baseline;
+  justify-content: center;
   width: ${(props) => `${props.width}px`};
+  height: 100%;
+  padding: 50px 30px;
   transform: ${(props) => `translatex(${-props.position}px)`};
-  height: 100%;
   color: #202020;
-  height: 100%;
   z-index: 99;
   transition: 0.8s ease;
 `;
 
 export const CloseIconWrap = styled.button`
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,14 +41,10 @@ export const CloseIconWrap = styled.button`
   height: 3rem;
   color: #2b3445;
   border: none;
-  border: none;
   border-radius: 50%;
   background-color: #f0f0f5;
   font-size: medium;
-  :hover {
-    background-color: #2b3445;
-    color: #e0e0e0;
-  }
+  cursor: pointer;
 `;
 
 export const Backdrop = styled.div`
