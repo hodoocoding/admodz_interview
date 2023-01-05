@@ -15,6 +15,7 @@ const App = () => {
       {background && (
         <Routes>
           <Route path="/product/:id" element={<Sidebar />} />
+          <Route path="/product" element={<Sidebar />} />
         </Routes>
       )}
     </div>
