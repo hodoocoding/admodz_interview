@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { ChangeEvent, Dispatch, SetStateAction } from "react";
 import { ImageUploader } from "components/imageUploader";
 import { validateForm } from "utilities";
 import { OPTIONS } from "constants/option";
@@ -8,8 +8,10 @@ import * as Styled from "./FormCotents.style";
 
 type Form = {
   product: ProductType;
-  setProduct: Dispatch<SetStateAction<string | number>> | any;
-  onChangeFormValue: Dispatch<SetStateAction<string | number>> | any;
+  setProduct: Dispatch<SetStateAction<ProductType>>;
+  onChangeFormValue: (
+    e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>,
+  ) => void;
 };
 
 const FormCotents = (props: Form) => {
@@ -35,8 +37,9 @@ const FormCotents = (props: Form) => {
           id="category"
           name="category"
           onChange={onChangeFormValue}
+          value={product.category}
         >
-          <option value="" selected disabled hidden>
+          <option value="" disabled>
             카테고리
           </option>
           {OPTIONS.map((option) => (
@@ -53,7 +56,7 @@ const FormCotents = (props: Form) => {
           id="price"
           type="number"
           name="price"
-          value={product?.price.toLocaleString("ko-KR")}
+          value={product?.price}
           onChange={onChangeFormValue}
         />
       </Styled.Fieldset>

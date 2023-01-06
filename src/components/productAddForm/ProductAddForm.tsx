@@ -8,6 +8,7 @@ import { useSidebarStore } from "store/useSidebarStore";
 
 import FormCotents from "components/formCotents/FormContents";
 
+import { ProductType } from "types/product";
 import * as Styled from "./ProductAddForm.style";
 
 const ProductAddForm = () => {
@@ -15,7 +16,7 @@ const ProductAddForm = () => {
   const { createProduct, products } = useProductStore();
   const nextId = useRef(products.length + 1);
 
-  const [product, setProduct] = useState({
+  const [product, setProduct] = useState<ProductType>({
     id: nextId.current.toString(),
     name: "",
     thumbnail: "",

@@ -10,23 +10,27 @@ interface ProductResponse {
     product: ProductType;
   };
 }
-type FetchProductsResult = any;
 
-export const fetchProduct = async (id: string | undefined) => {
+type FetchProductResult = ProductResponse["data"] | undefined;
+
+export const fetchProduct = async (id: string) => {
   try {
     const { data } = await axios.get<ProductResponse>(`/products/${id}`);
-    return data.data.product;
+    return data.data;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log(error);
   }
 };
 
-export const useProductQuery = (productId: string | undefined) => {
-  const queryResult = useQuery<FetchProductsResult>(
+export const useProductQuery = (productId: string) => {
+  const queryResult = useQuery<FetchProductResult>(
     [queryKeys.PRODUCT, productId],
     () => fetchProduct(productId),
     {
       enabled: !!productId,
+      cacheTime: 0,
+      staleTime: 0,
     },
   );
   return queryResult;

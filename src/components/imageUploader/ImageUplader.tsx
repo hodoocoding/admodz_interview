@@ -6,7 +6,7 @@ import * as Styled from "./ImageUploader.style";
 
 type ImageUploaderProp = {
   product: ProductType;
-  setProduct: Dispatch<SetStateAction<string>> | any;
+  setProduct: Dispatch<SetStateAction<ProductType>>;
 };
 
 const ImageUploader = (props: ImageUploaderProp) => {
