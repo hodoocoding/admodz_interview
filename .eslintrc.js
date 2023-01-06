@@ -29,6 +29,7 @@ module.exports = {
       2,
       { namedComponents: "arrow-function" },
     ],
+    "no-debugger": 0,
   },
   settings: {
     "import/resolver": {
