@@ -1,5 +1,3 @@
-/* eslint-disable no-unsafe-optional-chaining */
-/* eslint-disable no-console */
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -17,20 +15,12 @@ const ProductUpdateForm = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { updateProducts } = useProductStore();
-  const { data: itemInformation } = useProductQuery(id);
   const { onClickToggle } = useSidebarStore();
   const { mutate } = useUpdateMutation();
+  const { data: itemInformation } = useProductQuery(id as string);
 
-  const { name, thumbnail, price, quantity, category } = itemInformation;
-
-  const [product, setProduct] = useState<ProductType>({
-    id,
-    name,
-    thumbnail,
-    price,
-    quantity,
-    category,
-  });
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const [product, setProduct] = useState<ProductType>(itemInformation!.product);
 
   const onChangeFormValue = (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>,
@@ -47,7 +37,6 @@ const ProductUpdateForm = () => {
       { id, product },
       {
         onSuccess: async (data) => {
-          console.log("리턴데이터", data.products);
           await updateProducts(data.products);
           await setProduct({
             ...product,
