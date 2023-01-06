@@ -23,7 +23,7 @@ export const Sidebar = styled.div<SidebarProps>`
   justify-content: center;
   width: ${(props) => `${props.width}px`};
   height: 100%;
-  padding: 50px 30px;
+  /* padding: 50px 20px; */
   transform: ${(props) => `translatex(${-props.position}px)`};
   color: #202020;
   z-index: 99;
@@ -67,6 +67,7 @@ export const Content = styled.div`
   position: relative;
   width: 100%;
   height: 100;
+  margin-top: 130px;
 `;
 
 export const IconWrapper = styled.div`

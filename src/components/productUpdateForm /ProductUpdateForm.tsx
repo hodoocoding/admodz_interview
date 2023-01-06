@@ -10,6 +10,7 @@ import { useSidebarStore } from "store/useSidebarStore";
 
 import { FormCotents } from "components/formCotents";
 
+import { ProductType } from "types/product";
 import * as Styled from "./ProductUpdateForm.style";
 
 const ProductUpdateForm = () => {
@@ -22,7 +23,7 @@ const ProductUpdateForm = () => {
 
   const { name, thumbnail, price, quantity, category } = itemInformation;
 
-  const [product, setProduct] = useState<any>({
+  const [product, setProduct] = useState<ProductType>({
     id,
     name,
     thumbnail,
@@ -46,6 +47,7 @@ const ProductUpdateForm = () => {
       { id, product },
       {
         onSuccess: async (data) => {
+          console.log("리턴데이터", data.products);
           await updateProducts(data.products);
           await setProduct({
             ...product,

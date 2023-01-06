@@ -39,7 +39,6 @@ const FormCotents = (props: Form) => {
           <option value="" selected disabled hidden>
             카테고리
           </option>
-
           {OPTIONS.map((option) => (
             <option key={option} value={option}>
               {option}
@@ -54,7 +53,7 @@ const FormCotents = (props: Form) => {
           id="price"
           type="number"
           name="price"
-          value={product?.price}
+          value={product?.price.toLocaleString("ko-KR")}
           onChange={onChangeFormValue}
         />
       </Styled.Fieldset>

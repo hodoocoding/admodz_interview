@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useSidebarStore } from "store/useSidebarStore";
 import { AiOutlineClose } from "react-icons/ai";
@@ -14,6 +14,21 @@ const Sidebar = () => {
   const { pathname } = location;
 
   const { isOpen, position, onClickToggle } = useSidebarStore();
+
+  // 새로고침 막기 변수
+  const preventClose = (e: BeforeUnloadEvent) => {
+    e.preventDefault();
+    e.returnValue = "";
+  };
+  useEffect(() => {
+    (() => {
+      window.addEventListener("beforeunload", preventClose);
+    })();
+
+    return () => {
+      window.removeEventListener("beforeunload", preventClose);
+    };
+  }, []);
 
   return (
     <Styled.Container>
