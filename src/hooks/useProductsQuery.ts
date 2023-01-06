@@ -17,6 +17,7 @@ export const fetchProducts = async () => {
     const { data } = await axios.get<ProductsResponse>("/products");
     return data.data;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log(error);
   }
 };

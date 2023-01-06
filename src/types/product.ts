@@ -1,5 +1,5 @@
 export type ProductType = {
-  id: number | string;
+  id: number | string | undefined;
   name: string;
   thumbnail: string | null;
   price: number | string;

@@ -1,6 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
 import { useSidebarStore } from "store/useSidebarStore";
-import { Sidebar } from "components/sidebar";
 import * as Styled from "./Header.style";
 
 const Header = () => {

@@ -42,8 +42,7 @@ export const useProductStore = create<ProductStore>(
           };
         });
       },
-      updataProducts: (products: ProductType[] | undefined) => {
-        console.log(products);
+      updateProducts: (products: ProductType[] | undefined) => {
         set((state) => ({
           ...state,
           products,
