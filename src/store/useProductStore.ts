@@ -5,9 +5,9 @@ import { ProductType } from "types/product";
 type ProductStore = {
   products: ProductType[];
   fetchProducts: (products: ProductType[] | undefined) => void;
-  registProduct: (item: ProductType) => void;
-  eraseProduct: (id: string | number) => void;
-  updataProducts: (products: ProductType[] | undefined) => void;
+  createProduct: (item: ProductType) => void;
+  deleteProduct: (id: string | number) => void;
+  updateProducts: (products: ProductType[] | undefined) => void;
 };
 
 type PersistType = (
@@ -25,13 +25,13 @@ export const useProductStore = create<ProductStore>(
           products,
         }));
       },
-      registProduct: (item: ProductType) => {
+      createProduct: (item: ProductType) => {
         set((state) => ({
           ...state,
           products: [...state.products, { ...item }],
         }));
       },
-      eraseProduct: (id) => {
+      deleteProduct: (id) => {
         set((state) => {
           const filtered = state.products.filter(
             (product) => product.id !== id,

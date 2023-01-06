@@ -17,7 +17,7 @@ const Row = (props: RowProps) => {
   } = props;
 
   const { onClickToggle } = useSidebarStore();
-  const { eraseProduct } = useProductStore();
+  const { deleteProduct } = useProductStore();
   const location = useLocation();
 
   const { mutate } = useDeleteMutation();
