@@ -62,10 +62,10 @@
 
 - eslint
   - import order, 사용하지 않는 변수, 모듈 확인을 위한 린트를 구성했습니다.
-  - 컴포넌트 구조
+- 컴포넌트 구조
   ```
     index.ts  // 내보내기를 위한 index 파일
     {ComponentName}.tsx // 컴포넌트 파일
     {ComponentName}.style.ts  // 스타일 파일
   ```
-  - styled-components 로 스타일 된 컴포넌트를 일반 컴포넌트와 구분하기 위해 스타일 파일을 분리하고 Styled(`import * as Styled from '{ComponentName}.styled.ts'`)로 가져와 사용했습니다.
+- styled-components 로 스타일 된 컴포넌트를 일반 컴포넌트와 구분하기 위해 스타일 파일을 분리하고 Styled(`import * as Styled from '{ComponentName}.styled.ts'`)로 가져와 사용했습니다.
