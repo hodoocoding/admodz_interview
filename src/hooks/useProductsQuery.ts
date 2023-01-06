@@ -13,12 +13,8 @@ interface ProductsResponse {
 type FetchProductsResult = ProductsResponse["data"] | null | undefined;
 
 export const fetchProducts = async () => {
-  try {
-    const { data } = await axios.get<ProductsResponse>("/products");
-    return data.data;
-  } catch (error) {
-    console.log(error);
-  }
+  const { data } = await axios.get<ProductsResponse>("/products");
+  return data.data;
 };
 
 export const useProductsQuery = () => {

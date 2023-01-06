@@ -43,7 +43,6 @@ export const useProductStore = create<ProductStore>(
         });
       },
       updateProducts: (products: ProductType[] | undefined) => {
-        console.log(products);
         set((state) => ({
           ...state,
           products,

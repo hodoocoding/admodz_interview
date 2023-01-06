@@ -9,7 +9,7 @@ interface ProductMutationResponse {
 }
 
 type ProductUpdate = {
-  id: string | undefined;
+  id: string | number | undefined;
   product: ProductType;
 };
 
