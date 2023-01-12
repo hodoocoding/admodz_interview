@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# 양윤성 - 아몬즈 프론트엔드 개발자 채용 과제
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 실행방법
 
-## Available Scripts
+- 개발환경
+  - node: v18.9.1
+  - npm: 8.19.1
+  - react: 18.2.0
+  - 브라우져 : 크롬 최신 버전
 
-In the project directory, you can run:
+```
+  git clone https://github.com/yunsung-hodoopapa/amondz-commerce-admin.git
 
-### `npm start`
+  cd admonz-commerce-admin
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  git checkout main
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+  npm install && npm run build && npm run start
 
-### `npm test`
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 요구 사항
 
-### `npm run build`
+별도의 api나 DB 구성없이 주어진 본 과제를 진행하고자 한 페이지 형태에서 "상품 등록", "상품 조회", "상품 삭제", "상품 수정"을
+모두 할 수 있는 형태로 레이아웃을 구성했습니다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### 기능
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- 상품 등록
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  - 헤더에 위치한 "상품등록"을 클릭시 나타나는 사이드 컴포넌트 내 에서 "이름", "가격", "카테고리", "수량", "썸네일"을 등록할 수 있습니다.
+  - 각 필드값이 입력되지 않았을때는 버튼이 동작하지 않도록 disabled 처리를 했고, 각 값이 입력되었을때만 버튼이 동작합니다.
 
-### `npm run eject`
+- 상품 불러오기
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+  - 메인페이지로 첫 진입 시 react-query로 패칭한 목데이터를 죄호할 수 있습니다.
+  - 등록한 상품은 이 목 데이터 하단에 위치합니다.
+  - 리스트 페이지는 페이지를 리프레쉬 하면 초기 데이터로 복구 되도록 설정했습니다.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- 상품 편집
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+  - 상품을 등록 후 수정하고자 한다면, 리스트 내 각 상품 최우측에 위치한 "수정"버튼을 클릭해서 사이드바를 다시 불러올 수 있습니다.
+  - 사이드바가 호출될때 라우팅을 달리하는데, pathname에 따라, 상품을 업로드하기 위한 컴포넌트와 등록하기 위한 컴포넌트가 달리 렌더링 됩니다.
+  - 사이드 바는 쿼리의 id 값에 따라, 첫 진입 시 데이터에서 id 값이 맞는 데이터를 조회해 프랍으로 전달합니다.
+  - 상품의 필드값 모두 수정 가능합니다.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- 상품 삭제
 
-## Learn More
+  - 리스트 내 각 상품 최우측에 위치한 삭제 버튼을 통해 상품을 삭제할 수 있습니다.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### 상태관리
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- 서버의 api로부터 데이터를 패칭한다는 가정을 실현하기 위해 React-query를 사용해서 서버 상태를 관리하고 있습니다.
+- mock 데이터로부터 "조회", "수정", "삭제" 등의 기능을 구현해야 하기 때문에, 클라이언트 상태관리 라이브러리인 Zustand를 사용했습니다.
+- Zustand에서 제공하는 persist 미들웨어를 사용해 로컬 스토리지에 패칭한 데이터를 저장해 사용했습니다.
 
-### Code Splitting
+#### api 구성
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- 데이터를 싱글톤으로 구성하고 싶었으나, ui 상에서 CRUD가 이뤄지는 것을 시각적으로 보여주기 위해 "삭제", "업데이트" 등의 기능은 로컬 스토리지에 저장된 클라인트 상태 데이터를 사용하도록 msw handler api를 구성했습니다.
 
-### Analyzing the Bundle Size
+### etc.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- eslint
+  - import order, 사용하지 않는 변수, 모듈 확인을 위한 린트를 구성했습니다.
+- 컴포넌트 구조
+  ```
+    index.ts  // 내보내기를 위한 index 파일
+    {ComponentName}.tsx // 컴포넌트 파일
+    {ComponentName}.style.ts  // 스타일 파일
+  ```
+- styled-components 로 스타일 된 컴포넌트를 일반 컴포넌트와 구분하기 위해 스타일 파일을 분리하고 Styled(`import * as Styled from '{ComponentName}.styled.ts'`)로 가져와 사용했습니다.
